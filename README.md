@@ -18,3 +18,15 @@ This is a simple TCP socket-based client-server application written in C using L
 - `close()`: Graceful shutdown of socket descriptors.
 
 ---
+## Multithreaded TCP Chat System
+Basic chat system between a client and server. The server and client uses two threads one for sending message and another for recieving message to maintain the concurrency.
+
+### 📊 Client–Server Communication Diagram
+![alt text](Multithreaded_TCP_Chat_System.png)
+
+#### 🛠️ Concepts Covered
+- TCP Socket Programming in C : socket(), bind(), listen(), accept(), connect(), read(), write()
+- POSIX Threads (pthread_create, pthread_join)
+- Input/output stream handling with fgets()
+- Bidirectional communication using multithreading
+
