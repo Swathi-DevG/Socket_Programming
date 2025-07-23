@@ -53,6 +53,8 @@ This project implements a **Stop-and-Wait ARQ (Automatic Repeat Request)** proto
 ### 📊 Client–Server Communication Diagram
 ![alt text](./Simple_UDP_Stop&Wait/State_Diagram.png)
 
+### 📊 Stop and Wait ARQ Flow Diagram
+![alt text](./Simple_UDP_Stop&Wait/Stop_Wait_Diagram.png)
 #### 🛠️ Concepts Covered
 - `UDP sockets`
 - `Stop-and-Wait ARQ` logic
