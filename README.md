@@ -26,7 +26,23 @@ Basic chat system between a client and server. The server and client uses two th
 
 #### 🛠️ Concepts Covered
 - TCP Socket Programming in C : socket(), bind(), listen(), accept(), connect(), read(), write()
+- Use of inet_ntop() and inet_pton() for IP conversion
+- Network byte order conversion (htons, ntohs)
 - POSIX Threads (pthread_create, pthread_join)
 - Input/output stream handling with fgets()
 - Bidirectional communication using multithreading
 
+---
+## Simple UDP Client-Server
+A simple message-based communication between a client and a server using **UDP sockets** in C on Linux.
+Unlike TCP, UDP is **connectionless**, meaning the client and server don't establish a persistent connection but rather exchange self-contained messages (datagrams).
+
+### 📊 Client–Server Communication Diagram
+![alt text](Simple_UDP_Client_Server.png)
+
+#### 🛠️ Concepts Covered
+- UDP Socket Programming in C
+- socket(), bind(), sendto(), recvfrom(), close()
+- Use of inet_ntop() and inet_pton() for IP conversion
+- Network byte order conversion (htons, ntohs)
+- Basic error handling and message flow
