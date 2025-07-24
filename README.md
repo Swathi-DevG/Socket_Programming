@@ -62,3 +62,11 @@ This project implements a **Stop-and-Wait ARQ (Automatic Repeat Request)** proto
 - Timeout and retransmission logic in client
 - ACK and sequence number handling on server
 - Duplicate Frames handling
+
+---
+## Multi_Client_Simple_TCP
+A simple multi-client TCP chat server using `fork()` in C. Each connected client gets its own process for concurrent communication. 
+
+### 📊 Client–Server Communication Diagram
+![alt text](./Multi_Client_Simple_TCP/server_flowchart.png)
+![alt text](./Multi_Client_Simple_TCP/client_flowchart.png)
