@@ -55,6 +55,7 @@ This project implements a **Stop-and-Wait ARQ (Automatic Repeat Request)** proto
 
 ### 📊 Stop and Wait ARQ Flow Diagram
 ![alt text](./Simple_UDP_Stop&Wait/Stop_Wait_Diagram.png)
+
 #### 🛠️ Concepts Covered
 - `UDP sockets`
 - `Stop-and-Wait ARQ` logic
@@ -70,3 +71,9 @@ A simple multi-client TCP chat server using `fork()` in C. Each connected client
 ### 📊 Client–Server Communication Diagram
 ![alt text](./Multi_Client_Simple_TCP/server_flowchart.png)
 ![alt text](./Multi_Client_Simple_TCP/client_flowchart.png)
+
+#### 🛠️ Concepts Covered
+- `TCP Sockets`
+- Server handles multiple clients concurrently using `fork()`
+- Full-duplex communication: client sends a message, server echoes it back
+- Graceful client disconnection using `"exit"`
