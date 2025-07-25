@@ -2,11 +2,11 @@
 Welcome to **Socket Programming** — a personal repository where I document and practice key concepts of Socket programming through hands-on C programs.
 
 ---
-## Simple TCP Client-Server
+## 1. Simple TCP Client-Server
 This is a simple TCP socket-based client-server application written in C using Linux system calls. It demonstrates basic socket programming with `socket()`, `bind()`, `listen()`, `accept()`, `connect()`, `read()`, and `write()`.
 
 ### 📊 Client–Server Communication Diagram
-![alt text](./Simple_TCP_Client_Server/State_Diagram.png)
+![alt text](./1.Simple_TCP_Client_Server/State_Diagram.png)
 
 #### 🛠️ Concepts Covered
 - `socket()`: Create an endpoint for communication.
@@ -18,11 +18,11 @@ This is a simple TCP socket-based client-server application written in C using L
 - `close()`: Graceful shutdown of socket descriptors.
 
 ---
-## Multithreaded TCP Chat System
+## 2. Multithreaded TCP Chat System
 Basic chat system between a client and server. The server and client uses two threads one for sending message and another for recieving message to maintain the concurrency.
 
 ### 📊 Client–Server Communication Diagram
-![alt text](./Multithreaded_TCP_Chat_System/State_Diagram.png)
+![alt text](./2.Multithreaded_TCP_Chat_System/State_Diagram.png)
 
 #### 🛠️ Concepts Covered
 - TCP Socket Programming in C : socket(), bind(), listen(), accept(), connect(), read(), write()
@@ -33,12 +33,12 @@ Basic chat system between a client and server. The server and client uses two th
 - Bidirectional communication using multithreading
 
 ---
-## Simple UDP Client-Server
+## 3. Simple UDP Client-Server
 A simple message-based communication between a client and a server using **UDP sockets** in C on Linux.
 Unlike TCP, UDP is **connectionless**, meaning the client and server don't establish a persistent connection but rather exchange self-contained messages (datagrams).
 
 ### 📊 Client–Server Communication Diagram
-![alt text](./Simple_UDP_Client_Server/State_Diagram.png)
+![alt text](./3.Simple_UDP_Client_Server/State_Diagram.png)
 
 #### 🛠️ Concepts Covered
 - UDP Socket Programming in C
@@ -47,14 +47,14 @@ Unlike TCP, UDP is **connectionless**, meaning the client and server don't estab
 - Network byte order conversion (htons, ntohs)
 - Basic error handling and message 
 
-## Simple UDP Client-Server with Stop and Wait ARQ protocol
+## 4. Simple UDP Client-Server with Stop and Wait ARQ protocol
 This project implements a **Stop-and-Wait ARQ (Automatic Repeat Request)** protocol over **UDP** in C. It includes a client that sends data and a server that acknowledges receipt of each frame. Retransmission is handled if ACK is not received within a timeout.
 
 ### 📊 Client–Server Communication Diagram
-![alt text](./Simple_UDP_Stop&Wait/State_Diagram.png)
+![alt text](./4.Simple_UDP_Stop&Wait/State_Diagram.png)
 
 ### 📊 Stop and Wait ARQ Flow Diagram
-![alt text](./Simple_UDP_Stop&Wait/Stop_Wait_Diagram.png)
+![alt text](./4.Simple_UDP_Stop&Wait/Stop_Wait_Diagram.png)
 
 #### 🛠️ Concepts Covered
 - `UDP sockets`
@@ -65,15 +65,67 @@ This project implements a **Stop-and-Wait ARQ (Automatic Repeat Request)** proto
 - Duplicate Frames handling
 
 ---
-## Multi_Client_Simple_TCP
-A simple multi-client TCP chat server using `fork()` in C. Each connected client gets its own process for concurrent communication. 
+## 5. Multi Client Echo Server using Fork
+A simple multi-client TCP chat server using `fork()` in C. Each connected client gets its own process for concurrent communication. Server send echo message back to the client from which it received.
 
 ### 📊 Client–Server Communication Diagram
-![alt text](./Multi_Client_Simple_TCP/server_flowchart.png)
-![alt text](./Multi_Client_Simple_TCP/client_flowchart.png)
+![alt text](./5.MultiClient_EchoServer_Fork/server_flowchart.png)
+![alt text](./5.MultiClient_EchoServer_Fork/client_flowchart.png)
 
 #### 🛠️ Concepts Covered
-- `TCP Sockets`
-- Server handles multiple clients concurrently using `fork()`
-- Full-duplex communication: client sends a message, server echoes it back
-- Graceful client disconnection using `"exit"`
+- Basic TCP server-client communication
+- Handles multiple clients using `fork()`
+    - Uses fork() to create a child process for each client
+    - Parent process continues accepting new connections
+    - Child process handles communication with its client
+- Echoes back whatever message it receives
+- Simple exit handling with "exit" command
+
+#### Limitations
+- No threading - each client requires a separate process
+- Only echoes messages, no actual chat functionality
+- Server cannot initiate communication
+- No client identification or targeting
+
+---
+## 6. Multi Client Chat server using Fork and Thread
+A hybrid multi-client TCP chat server in C combining fork() and pthreads. Each client connection spawns a new process (fork()), with two threads per client for non-blocking I/O:
+- Send Thread: Handles outgoing messages to the server.
+- Receive Thread: Processes incoming messages from the server.
+
+### 📊 Client–Server Communication Diagram
+![alt text](./6.MultiClient_ChatServer_ForkThreads/server_flowchart.png)
+![alt text](./6.MultiClient_ChatServer_ForkThreads/client_flowchart.png)
+
+#### 🛠️ Concepts Covered
+-  Improvements over Version **5. Multi Client Echo Server using Fork**
+    - Added proper chat functionality (not just echoing)
+    - Uses pthreads for concurrent I/O within each client connection
+    - Client can send messages to server and receive responses
+    - Client naming system introduced
+    - Cleaner exit handling
+- Still uses fork() to handle multiple clients
+
+#### Limitations
+- Server still can't send messages to specific clients
+- Uses both fork() and threads which is resource-intensive
+- No broadcast or Targeted messaging capability
+
+---
+## 7. Multi Client Targeted Chat using only Threads
+An advanced multi-client TCP chat server in C using pure pthreads (no fork()). Features a centralized thread-safe client registry, enabling the server to:
+- Broadcast or Target specific clients by name (e.g., "Alice: Hello!").
+- Dynamically manage connections (add/remove clients).
+
+### 📊 Client–Server Communication Diagram
+![alt text](./7.MultiClient_TargetedChat_Threads/server_flowchart.png)
+![alt text](./7.MultiClient_TargetedChat_Threads/client_flowchart.png)
+
+#### 🛠️ Concepts Covered
+- Improvements over **6. Multi Client Chat server using Fork and Thread**
+    - Eliminated fork() - uses only pthreads for multi-client handling
+    - Server can send messages to specific clients by name
+    - More efficient resource usage (no process duplication)
+- Client tracking system with mutex protection    - Better client management with add/remove functionality
+- Maximum client limit enforcement
+
