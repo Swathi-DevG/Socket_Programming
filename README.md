@@ -129,3 +129,15 @@ An advanced multi-client TCP chat server in C using pure pthreads (no fork()). F
 - Client tracking system with mutex protection    - Better client management with add/remove functionality
 - Maximum client limit enforcement
 
+---
+## 8. Simple File Transfer TCP
+This is a simple client-server file transfer application that allows users to:
+- Send files from client to server
+- Request files from server to client
+- Exit the application
+
+#### 🛠️ Concepts Covered
+- TCP socket communication
+- File metadata transfer (filename, size)
+- Basic error handling
+- Progress reporting
