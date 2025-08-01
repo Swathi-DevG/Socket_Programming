@@ -141,3 +141,16 @@ This is a simple client-server file transfer application that allows users to:
 - File metadata transfer (filename, size)
 - Basic error handling
 - Progress reporting
+
+---
+## 9. Multi Client File Transfer TCP
+This project implements a bidirectional TCP-based file transfer system in C, allowing both the client and server to send and receive files using a custom protocol over sockets.
+
+#### 🛠️ Concepts Covered
+- Send files from client to server
+- Request files from server to client
+- Chunked file transfer using read() / write()
+- Metadata exchange: filename and size
+- Multi-client support using POSIX threads (pthread)
+- Reliable, blocking I/O over TCP
+
